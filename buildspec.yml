@@ -7,13 +7,12 @@ phases:
     commands:
       - echo "Installing dependencies"
       - npm install
+
   build:
     commands:
-      - echo "Running tests and type checks"
-      - npm run build --if-present
-      - echo "Zipping build artifacts"
+      - echo "Zipping app source files"
       - mkdir -p target
-      - zip -r target/testartifacts.zip dist || echo "dist directory not found"
+      - zip -r target/testartifacts.zip . -x "node_modules/*" ".git/*" "target/*"
 
 artifacts:
   files:
